@@ -18,10 +18,23 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    data_dir = Path(__file__).resolve().parent / "data"
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", required=True, help="Path to model.joblib")
-    parser.add_argument("--data", required=True, help="Path to test.csv")
-    parser.add_argument("--out", required=True, help="Output CSV path")
+    parser.add_argument(
+        "--model",
+        default=str(data_dir / "model.joblib"),
+        help="Path to model.joblib",
+    )
+    parser.add_argument(
+        "--data",
+        default=str(data_dir / "test.csv"),
+        help="Path to test.csv",
+    )
+    parser.add_argument(
+        "--out",
+        default=str(data_dir / "predictions.csv"),
+        help="Output CSV path",
+    )
     parser.add_argument("--encoding", default="cp1251", help="CSV encoding")
     args = parser.parse_args()
 
